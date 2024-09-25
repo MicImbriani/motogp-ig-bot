@@ -1,5 +1,5 @@
-from collector import *
+from contentCreator import ContentCreator
 
 if __name__ == '__main__':
-    x = request_rider()
-    print(x)
+    content_creator = ContentCreator()
+    content_creator.send_question()
