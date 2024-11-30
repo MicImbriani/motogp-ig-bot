@@ -31,8 +31,12 @@ class RacingMikeAPI():
                               "session": "af960ae0-845e-4fac-a431-4a7ea6c7d128"},
                              {"accept": "*/*"}],    # RAC FP1 FP2 FP3 FP4 Q1 Q2 WUP SPR
             "calendar":     ["motogp-calendar",
-                             {"filter": "upcoming"},
-                             {"accept": "*/*"}]      # upcoming or full
+                             {"filter": "full"},
+                             {"accept": "*/*"}],
+            # TODO: handle case where season is over (hence, "upcoming" event will be empty) but we still want to use the API handle.
+            # "next_event":   ["motogp-calendar",
+            #                  {"filter": "upcoming"},
+            #                  {"accept": "*/*"}],
         }
     
         self._requests = {
