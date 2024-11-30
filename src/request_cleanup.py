@@ -37,13 +37,14 @@ def rsp_cleanup(topic, content):
             del rider_entry['classification_id']
             new_content.append(rider_entry)
     
-    elif type(content) == list:
-        # print("LEN LIST :", len(content))
-        new_content = content[0]
+    # elif type(content) == list:
+    #     # print("LEN LIST :", len(content))
+    #     new_content = content[0]
     # print("CONTENT ", content)
     # print("CONTENT TYPE :", type(content))
     # for i in dict[topic]:
     #     del content[i]
+    else: 
+        new_content = content
 
-    print("CLEAN CONTENT ", new_content)
     return new_content
