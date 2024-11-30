@@ -11,7 +11,7 @@ class ContentCreator():
 
     # pick n topics
     # if `evaluation=True`, allow user to confirm or discard
-    def _pick_random_topics(self, amount=2, evaluation=False, verbose=True):
+    def _pick_random_topics(self, amount=2, evaluation=False,):
         years = [self.random_year() for i in range(amount)]
         if evaluation:
             timeout = 0
@@ -23,10 +23,9 @@ class ContentCreator():
                 timeout += 1
         else:
             topics = [choice(self.collector.topics) for i in range(amount)]
-        if verbose:
-            print("Topics chosen: " , topics)
-            print("Years chosen: " , years)
+
         return topics, years
+
 
     def _generate_question(self, topics, years, clean_output=True):
         content = dict.fromkeys(topics)
@@ -37,6 +36,7 @@ class ContentCreator():
                 content[topic] = clean_gpt_rsp
             else:
                 content[topic] = gtp_rsp
+
         # prompt = prompt if not clean_output else rsp_cleanup(topics, question)
         # now that each topic has content, compose question and propose it to ChatGPT
         prompt = "I will give you two topics. You need to find some interesting in-depth facts, and relationships about them that are not obvious to the naked eye.\n"
@@ -49,8 +49,11 @@ class ContentCreator():
         y = randint(1990, 2024)
         return choice([y, 2024]) if recent_bias else y
 
-    def get_question(self, clean_output=True):
+    def get_question(self, clean_output=True, verbose=True):
         topics, years = self._pick_random_topics()
+        if verbose:
+            print("Topics chosen: " , topics)
+            print("Years chosen: " , years)
         question = self._generate_question(topics, years)
         return question
 
